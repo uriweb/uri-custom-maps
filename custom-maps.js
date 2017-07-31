@@ -4,7 +4,6 @@
 
 	var map, mapbox, markers;
 	mapbox = {
-		id: null,
 		token : 'pk.eyJ1IjoianBlbm55cGFja2VyIiwiYSI6ImNpeGs3NzZmMDAwMjUzM2xqZzQ1OXd4cmQifQ.BWgYC3LTTuBpnqito9pPrA'
     };
 	markers = [];
@@ -18,10 +17,10 @@
 			maxBounds: bounds
 		}).setView([URICustomMaps.lat, URICustomMaps.lon], URICustomMaps.zoom);
 		
-		L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=' + mapbox.token, {
+		L.tileLayer('https://api.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapbox.token, {
 			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 			maxZoom: 18,
-			id: mapbox.id,
+			id: 'mapbox.streets-basic',
 			accessToken: mapbox.token,
 		}).addTo(map);
 								
