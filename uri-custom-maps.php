@@ -24,17 +24,19 @@ function uri_custom_maps_shortcode($atts) {
         array(
             'data' => '',
             'zoom' => 9,
-            'lat' => 41.7073,
+            'lat' => 41.5977,
             'lon' => -71.5217,
-            'height' => '600px'
+            'height' => '500px'
         ), $atts
     );
 
     echo '
         <style>
-            #map {
-                height: ' . $atts['height'] .';
+            #uri-custom-map {
                 margin-bottom: 2rem;
+            }
+            .uri-custom-map-point img {
+                max-width: 300px;
             }
         </style>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
@@ -43,12 +45,51 @@ function uri_custom_maps_shortcode($atts) {
     
     uri_custom_maps_scripts($atts);
     
-    echo '<div id="map"></div>';
+    echo '<div id="uri-custom-map"></div>';
 		
 }
 add_shortcode( 'uri-map', 'uri_custom_maps_shortcode' );
 
-
+function uri_custom_maps_point_shortcode($atts) {
+    
+    // Attributes
+    extract( shortcode_atts(
+        array(
+            'lat' => '',
+            'lon' => '',
+            'title' => '',
+            'body' => '',
+            'img' => '',
+            'link' => ''
+            ), $atts
+        )
+    );
+    
+    $output = '<div class="uri-custom-map-point" data-lat="' . $lat . '" data-lon="' . $lon . '">';
+    
+    if(!empty($img)) {
+        $output .= '<img src="' . $img . '">';
+    }
+    
+    if(!empty($title)) {
+        $output .= '<h3>' . $title . '</h3>';
+    }
+    
+    if(!empty($body)) {
+        $output .= '<p>' . $body . '</p>';
+    }
+    
+    if(!empty($link)) {
+        $output .= '<a href="' . $link . '" title="' . $title . '">Learn more</a>';
+    }
+    
+    $output .= '</div>';
+        
+    return $output;
+    
+}
+add_shortcode( 'uri-map-point', 'uri_custom_maps_point_shortcode' );
+    
 function uri_custom_maps_scripts($atts) {
     
 	wp_register_script( 'uri-custom-maps-js', plugins_url( '/custom-maps.js', __FILE__ ) );
