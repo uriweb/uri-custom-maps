@@ -45,7 +45,7 @@ function uri_custom_maps_shortcode($atts) {
     
     uri_custom_maps_scripts($atts);
     
-    echo '<div id="uri-custom-map"></div>';
+    return '<div id="uri-custom-map"></div>';
 		
 }
 add_shortcode( 'uri-map', 'uri_custom_maps_shortcode' );
