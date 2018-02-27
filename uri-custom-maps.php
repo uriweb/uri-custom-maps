@@ -3,7 +3,7 @@
 Plugin Name: URI Custom Maps
 Plugin URI: http://www.uri.edu
 Description: A custom interactive map generator
-Version: 1.0
+Version: 0.1
 Author: URI Web Communications
 Author URI: 
 @author: Brandon Fuller <bjcfuller@uri.edu>
